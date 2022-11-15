@@ -1,0 +1,12 @@
+version: '3'
+services:
+  db:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./${SQL_PATH_HOST}/data:/var/lib/mysql
+      - ./${SQL_PATH_HOST}/initdb.d:/docker-entrypoint-initdb.d # 可以放初始化SQL
+    environment:
+      - MYSQL_ROOT_PASSWORD=${ROOT_PASSWORD}
+      - TZ=${TZ}
