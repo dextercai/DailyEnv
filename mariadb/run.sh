@@ -9,7 +9,7 @@ sudo docker run -d \
     -e MARIADB_DATABASE=default_db \
     -e MARIADB_USER=user \
     -e MARIADB_PASSWORD=password \
-    -e TZ='Asia/Shanghai' \ 
-    --restart unless-stopped \
-    -v $dir_path/stack:/var/lib/mysql \
+    -e TZ='Asia/Shanghai' \
+    -v $dir_path/stack:/var/lib/mysql:rw \
+    --restart=unless-stopped \
     mariadb:11
