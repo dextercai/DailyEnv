@@ -21,10 +21,10 @@ scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['10.16.88.44:9090']
+      - targets: ['127.0.0.1:9090']
   - job_name: 'cadvisor'
     static_configs:
-      - targets: ['10.16.88.44:8084'] # 本地 cadvisor 访问地址
-  - job_name: 'node-exporter'
+      - targets: ['10.0.101.100:8084'] # 本地 cadvisor 访问地址
+  - job_name: 'node-lan-infra-base-node-exporter'
     static_configs:
-      - targets: ['10.16.88.44:9100']
+      - targets: ['10.0.101.100:9100']

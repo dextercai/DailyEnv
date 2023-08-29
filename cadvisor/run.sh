@@ -1,0 +1,18 @@
+#!/bin/bash
+file_path=`readlink -f $0`
+dir_path=`dirname $file_path`
+
+
+VERSION=v0.36.0 # use the latest release version from https://github.com/google/cadvisor/releases
+sudo docker run \
+    --volume=/:/rootfs:ro \
+    --volume=/var/run:/var/run:ro \
+    --volume=/sys:/sys:ro \
+    --volume=/var/lib/docker/:/var/lib/docker:ro \
+    --volume=/dev/disk/:/dev/disk:ro \
+    --publish=9101:8080 \
+    --detach=true \
+    --name=cadvisor \
+    --privileged \
+    --device=/dev/kmsg \
+    gcr.io/cadvisor/cadvisor:$VERSION
