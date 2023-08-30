@@ -9,6 +9,7 @@ sudo docker run \
     --volume=/var/lib/docker/:/var/lib/docker:ro \
     --volume=/dev/disk/:/dev/disk:ro \
     --publish=9101:8080 \
+    --restart unless-stopped \
     --detach=true \
     --name=cadvisor \
     --privileged \
