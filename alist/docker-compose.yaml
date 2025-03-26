@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+    alist:
+        restart: always
+        volumes:
+            - './data:/opt/alist/data'
+            - './share:/docShare'
+        ports:
+            - '5244:5244'
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - UMASK=022
+        container_name: alist
+        image: 'dextercai/alist-with-pdfjs:alpha'

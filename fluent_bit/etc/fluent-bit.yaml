@@ -1,0 +1,33 @@
+service:
+  flush: 5
+  log_level: info
+  daemon: off
+
+pipeline:
+  inputs:
+    - name: tail
+      path: /app/logs/*.log, /app/logs/*.log.*
+      tag: app_logs
+      db: /app/logs/flb.db
+      processors:
+        logs:
+          - name: opentelemetry_envelope
+
+          - name: content_modifier
+            context: otel_resource_attributes
+            action: upsert
+            key: service.name
+            value: test-service
+
+  filters:
+    - name: modify
+      match: "*"
+
+  outputs:
+    - name: opentelemetry
+      match: "*"
+      host: 10.10.12.221
+      port: 14318
+
+    - name: stdout
+      match: "*"
